@@ -1,9 +1,6 @@
 package tests;
 
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.junit4.DisplayName;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import pageObject.ForgotPasswordPage;
 import pageObject.LoginPage;
@@ -17,25 +14,12 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @DisplayName("Тесты авторизации Пользователя [Вход] ")
-public class LoginTest {
+public class LoginTest extends BaseTest{
     RegisterPage registerPage = new RegisterPage();
     LoginPage loginPage = new LoginPage();
     MainPage mainPage = new MainPage();
     LoginTestData loginTestData = new LoginTestData();
     ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
-
-    @Before
-    public void setup() {
-        // MAC - не открывался драйвер,  ругался на неизвестный источник, тогда:
-        // Открыть терминал и перейти к пути, по которому загружается chromedriver. Ввести xattr -d com.apple.quarantine chromedriver
-//         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
-//         Configuration.browserBinary = "/Applications/Yandex.app/Contents/MacOS/Yandex";
-        baseUrl = "https://stellarburgers.nomoreparties.site";
-    }
-    @After
-    public void end(){
-        Selenide.closeWebDriver();
-    }
 
     @DisplayName("Вход через кнопку в форме регистрации")
     @Test

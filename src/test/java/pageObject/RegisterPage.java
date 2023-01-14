@@ -3,9 +3,10 @@ package pageObject;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -15,18 +16,19 @@ public class RegisterPage {
         open("/register");
     }
     // Локаторы
-    // Поле ввода имени
-    SelenideElement nameField = $(byXpath("//div/main/div/form/fieldset[1]/div/div/input"));
-    // Поле ввода почты
-    SelenideElement emailField = $(byXpath("//div/main/div/form/fieldset[2]/div/div/input"));
+    // Поле ввода имени. Нашли лейбл "Имя" и потом нашли ниже сестринский элемент с тегом input (если надо предшествующий - то preceding-sibling)
+    SelenideElement nameField = $(byXpath(".//label[text()='Имя']/following-sibling::input"));
+    // Поле ввода почты. Нашли лейбл "Email", поднялись к родителю и у него ищем ребенка с тегом input.
+    SelenideElement emailField = $(byXpath(".//label[text()='Email']/../input"));
     // Поле ввода пароля
-    SelenideElement passwordField = $(byXpath("//div/main/div/form/fieldset[3]/div/div/input"));
+    SelenideElement passwordField = $(byXpath(".//label[text()='Пароль']/../input"));
     // Кнопка "Зарегистрироваться"
-    SelenideElement registerButton = $(byText("Зарегистрироваться"));
+    SelenideElement registerButton = $(byXpath(".//button[text()='Зарегистрироваться']"));
     // Текст при вводе пароля меньше 6 символов
-    SelenideElement textWrongPassword = $(byXpath("//div/main/div/form/fieldset[3]/div/p"));
-    // Кнопка "Войти"
-    SelenideElement loginButton = $(byXpath("//div/main/div/div/p/a"));
+    SelenideElement textWrongPassword = $(byXpath(".//p[text()='Некорректный пароль']"));
+    // Кнопка "Войти". Для себя 2 варианта, через xPath и CSS
+//    SelenideElement loginButton = $(byXpath(".//a[text()='Войти']"));
+    SelenideElement loginButton = $(byCssSelector("a[href='/login']"));
 
     // Заполнение полей
     @Step("Заполнение поля Имя")

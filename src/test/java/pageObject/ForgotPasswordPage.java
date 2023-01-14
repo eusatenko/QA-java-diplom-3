@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class ForgotPasswordPage {
     // Кнопка "Войти"
-    SelenideElement loginButton = $(byText("Войти"));
+    SelenideElement loginButton = $(byXpath(".//a[text()='Войти']"));
     @Step("Открыть страницу восстановления пароля")
     public void openPage(){open("/forgot-password");}
 

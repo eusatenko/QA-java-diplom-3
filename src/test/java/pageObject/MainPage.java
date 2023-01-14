@@ -9,22 +9,22 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage {
     // Кнопка "Войти" или "Оформить заказ" в зависимости от того авторизован пользователь или нет
-    SelenideElement loginOrCreateOrderButton = $(byXpath("//div/main/section[2]/div/button"));
+    SelenideElement loginOrCreateOrderButton = $(byXpath(".//button[text()='Оформить заказ' or text()='Войти в аккаунт']"));
     // Кнопка "Личный кабинет"
-    SelenideElement personalAccountButton = $(byText("Личный Кабинет"));
+    SelenideElement personalAccountButton = $(byXpath(".//p[text()='Личный Кабинет']"));
     // Кнопка "Конструктор"
-    SelenideElement constructorButton = $(byXpath("//div/header/nav/ul/li[1]/a/p"));
+    SelenideElement constructorButton = $(byXpath(".//p[text()='Конструктор']"));
     // Кнопка "Логотип"
-    SelenideElement logoButton = $(byXpath("//div/header/nav/div/a"));
+    SelenideElement logoButton = $(byCssSelector("div.AppHeader_header__logo__2D0X2"));
     // Надпись "Соберите бургер"
-    SelenideElement textCreateBurger = $(byXpath("//div/main/section[1]/h1"));
+    SelenideElement textCreateBurger = $(byXpath(".//h1[text()='Соберите бургер']"));
     /* КОНСТРУКТОР БУРГЕРА */
     // Булки
-    SelenideElement constructorBunButton = $(byXpath("//div/main/section[1]/div[1]/div[1]"));
+    SelenideElement constructorBunButton = $(byXpath(".//span[text()='Булки']//parent::div"));
     // Соусы
-    SelenideElement constructorSauceButton = $(byXpath("//div/main/section[1]/div[1]/div[2]"));
+    SelenideElement constructorSauceButton = $(byXpath(".//span[text()='Соусы']//parent::div"));
     // Начинки
-    SelenideElement constructorToppingButton = $(byXpath("//div/main/section[1]/div[1]/div[3]"));
+    SelenideElement constructorToppingButton = $(byXpath(".//span[text()='Начинки']//parent::div"));
 
     @Step("Получить текст кнопки [Оформить заказ] или [Войти в аккаунт]")
     public String getTextLoginOrCreateOrderButton(){

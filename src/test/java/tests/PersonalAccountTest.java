@@ -1,11 +1,7 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import pageObject.LoginPage;
 import pageObject.MainPage;
@@ -18,20 +14,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @DisplayName("Тесты перехода в [Личный кабинет] и из него")
-public class PersonalAccountTest {
-    @Before
-    public void setup() {
-        // MAC - не открывался драйвер,  ругался на неизвестный источник, тогда:
-        // Открыть терминал и перейти к пути, по которому загружается chromedriver. Ввести xattr -d com.apple.quarantine chromedriver
-//        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
-//        Configuration.browserBinary = "/Applications/Yandex.app/Contents/MacOS/Yandex";
-        baseUrl = "https://stellarburgers.nomoreparties.site";
-    }
-    @After
-    public void end(){
-        Selenide.closeWebDriver();
-    }
-
+public class PersonalAccountTest extends BaseTest {
     PersonalAccountPage personalAccountPage = new PersonalAccountPage();
     LoginPage loginPage = new LoginPage();
     MainPage mainPage = new MainPage();
@@ -51,7 +34,9 @@ public class PersonalAccountTest {
         loginAndCheckAuth();
         assertThat("Нет кнопки Профиль",
                 personalAccountPage.getTextProfileButton(),
-                equalTo("Профиль"));
+                equalTo("Профиль"));assertThat("Нет кнопки Профиль",
+                personalAccountPage.getTextOrderStoryButton(),
+                equalTo("История заказов"));
         assertThat("Нет кнопки Выход",
                 personalAccountPage.getTextExitButton(),
                 equalTo("Выход"));

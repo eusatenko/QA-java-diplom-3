@@ -1,9 +1,6 @@
 package tests;
 
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.junit4.DisplayName;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import pageObject.MainPage;
 
@@ -13,20 +10,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @DisplayName("Тесты нажатия разделов конструктора Бургеров")
-public class ConstructorSectionTest {
-    @Before
-    public void setup() {
-        // MAC - не открывался драйвер,  ругался на неизвестный источник, тогда:
-        // Открыть терминал и перейти к пути, по которому загружается chromedriver. Ввести xattr -d com.apple.quarantine chromedriver
-//        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
-//        Configuration.browserBinary = "/Applications/Yandex.app/Contents/MacOS/Yandex";
-        baseUrl = "https://stellarburgers.nomoreparties.site";
-    }
-    @After
-    public void end(){
-        Selenide.closeWebDriver();
-    }
-
+public class ConstructorSectionTest extends BaseTest{
     MainPage mainPage = new MainPage();
 
     @DisplayName("Клик на [Булки]")

@@ -9,11 +9,11 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class LoginPage {
     // Поле Email
-    SelenideElement emailField = $(byXpath("//div/main/div/form/fieldset[1]/div/div/input"));
+    SelenideElement emailField = $(byXpath(".//label[text()='Email']/../input"));
     // Поле Пароль
-    SelenideElement passwordField = $(byXpath("//div/main/div/form/fieldset[2]/div/div/input"));
+    SelenideElement passwordField = $(byXpath(".//label[text()='Пароль']/../input"));
     // Кнопка "Войти"
-    SelenideElement loginButton = $(byText("Войти"));
+    SelenideElement loginButton = $(byXpath(".//button[text()='Войти']"));
 
     @Step("Открыть страницу Логина")
     public void openPage() {
